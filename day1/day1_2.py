@@ -13,10 +13,9 @@ with open('input.txt', 'r') as f:
         top.append(adder)
         if adder > biggest:
             biggest = adder
-            top.append(biggest)
             adder = 0
         else:
             adder = 0
   top.append(adder)
-  
-  print(biggest, sum(sorted(top[-3:])))
+  top = sorted(top) # couldn't get this to work in the print statement
+  print(biggest, sum(top[-3:]))
