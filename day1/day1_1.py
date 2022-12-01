@@ -12,7 +12,7 @@ with open('input.txt', 'r') as f:
         if adder > biggest:
             biggest = adder
             adder = 0
-          else:
+        else:
             adder = 0
   
   print(biggest)
