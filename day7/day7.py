@@ -47,5 +47,11 @@ with open('input.txt', 'r') as f:
             result += d[item]
 
     print(result)
+    
+    store = []
+    for storage in d:
+        store.append(d[storage])
+
+    print(sorted([val for val in store if val >= (30000000 - (70000000 - max(store)))])[0])
 
         
