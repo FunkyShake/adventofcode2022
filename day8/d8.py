@@ -1,3 +1,6 @@
+#TODO: figure out why it works for test 
+# and why np.array reverse x,y in diff interpreters
+
 import numpy as np
 
 def north(grid, pos_x, pos_y):
@@ -5,26 +8,25 @@ def north(grid, pos_x, pos_y):
   return any(grid[pos_x, pos_y] <= item for item in n)
   
 def south(grid, pos_x, pos_y):
-  s = [grid[i, pos_y] for i in range(pos_x+1))]
-  return any(grid[pos_x, pos_y] <= item for item in n)
+  s = [grid[i, pos_y] for i in range(pos_x+1)]
+  return any(grid[pos_x, pos_y] <= item for item in s)
   
 def west(grid, pos_x, pos_y):
-  w = [grid[i, pos_y] for i in reversed(range(pos_y))]
-  return any(grid[pos_x, pos_y] <= item for item in n)
+  w = [grid[pos_x, i] for i in reversed(range(pos_y))]
+  return any(grid[pos_x, pos_y] <= item for item in w)
 
 def east(grid, pos_x, pos_y):
-  e = [grid[i, pos_y] for i in reversed(range(pos_y+1))]
-  return any(grid[pos_x, pos_y] <= item for item in n)
+  e = [grid[pos_x, i] for i in range(pos_y+1)]
+  return any(grid[pos_x, pos_y] <= item for item in e)
 
-with open('input.txt', 'r') as f:
+with open('test.txt', 'r') as f:
   arr = np.array([[int(letter) for letter in list(l)] for l in f.read().split('\n')])
   
   visible = (len(arr) * len(arr))
-  ls = [] #test results
-  
+    
   for x in range(1, len(arr)-1):
     for y in range(1, len(arr)-1):
-      
+
       if north(arr, x, y):
         if south(arr, x, y):
           if west(arr, x, y):
@@ -33,10 +35,10 @@ with open('input.txt', 'r') as f:
             else:
               break
           else:
-              break
+            break
         else:
-              break
+          break
       else:
-              break
+        break
           
   print(visible)
