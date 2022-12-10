@@ -1,43 +1,41 @@
 # TODO! Get movements working
 # do the correct logic for movement
 
-def movement(d, m, y1, x1):
-    if d == 'U'
-      yh -= 1
+def movement(d, m, y, x):
+    if d == 'U':
+        y -= 1
     elif d == 'D':
-      yh += 1
+        y += 1
     elif d == 'L':
-      xh -= 1
+        x -= 1
     elif d == 'R':
-      xh += 1
-      
-  return yh, xh
+        x += 1
 
-with open('input.txt', 'r') as f:
-  data = [l.split(' ') for l in f.read().split('\n')]
-  
-  visited = []
-  prev_moves = []
-  
-  y1, x1, y2, x2, = 0, 0, 0, 0
-  
-for ipt in data:
-  d, m = ipt[0], int(ipt[1])
-  prev_moves.append(d)
-  
-  #insert logic here
-  if m < 2: # single movement will never be same as prev direction
-    y1, x1 = movement(d, m, y1, x1)
-    
-  else:
-    for i in range(m):
-      y1, x1 = movement(d, m, y1, x1)
-      #if y2, x2 within 2 logic
-      # visited.append((y2, x2))
-      
-      
-      
-      
-print(len(set(visited)))
+    return y, x
 
-      
+with open('test.txt', 'r') as f:
+    data = [l.split(' ') for l in f.read().split('\n')]
+
+    visited = []
+    prev_moves = []
+
+    y1, x1, y2, x2, = 0, 0, 0, 0
+
+    for ipt in data:
+        d, m = ipt[0], int(ipt[1])
+        if m < 2:  # single movement will never be same as prev direction
+            y1, x1 = movement(d, m, y1, x1)
+
+        else:
+            for i in range(m):
+                if i == 0:
+                    y1, x1 = movement(d, m, y1, x1)
+                    # if it's movement is still within 1 of x2, y2
+
+                else:
+                    y1, x1 = movement(d, m, y1, x1)
+                    y2, x2 = movement(d, m, y2, x2)
+
+                    visited.append((y2,x2))
+
+print(visited)
